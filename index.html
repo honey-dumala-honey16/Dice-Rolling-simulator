@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎲 Dice Roller</title>
+  <style>
+    body {
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(to bottom right, #ffe6f0, #e0f7fa);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 2rem;
+      color: #ff69b4;
+      text-shadow: 2px 2px #ffe6f0;
+    }
+
+    .dice {
+      font-size: 8rem;
+      margin: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .dice:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    button {
+      background-color: #ffb6c1;
+      color: white;
+      font-size: 1.3rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      margin: 0.5rem;
+      box-shadow: 2px 2px 5px rgba(255, 105, 180, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
+    li {
+      font-size: 1.3rem;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem;
+      background-color: #fff0f5;
+      border-radius: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li span {
+      font-size: 2.5rem;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1> Dice Roller🎲</h1>
+  <div class="dice" id="dice">&#9860;</div>
+
+  <button id="roll-button">💫Roll Dice</button>
+  <button id="clear-button">🧹Clear History</button>
+
+  <ul id="roll-history">
+
+  </ul>
+
+  <script>
+    const diceEl = document.getElementById("dice");
+    const rollButton = document.getElementById("roll-button");
+    const clearButton = document.getElementById("clear-button");
+    const rollHistory = document.getElementById("roll-history");
+
+    const diceFaces = ["\u2680", "\u2681", "\u2682", "\u2683", "\u2684", "\u2685"];
+    let rollCount = 0;
+
+    rollButton.addEventListener("click", () => {
+      const roll = Math.floor(Math.random() * 6);
+      const diceSymbol = diceFaces[roll];
+
+
+      diceEl.innerHTML = diceSymbol;
+
+ 
+      rollCount++;
+      const newRoll = document.createElement("li");
+      newRoll.innerHTML = `Roll ${rollCount}: <span>${diceSymbol}</span>`;
+      rollHistory.appendChild(newRoll);
+    });
+
+    clearButton.addEventListener("click", () => {
+      rollHistory.innerHTML = "";
+      rollCount = 0;
+    });
+  </script>
+
+</body>
+</html>
